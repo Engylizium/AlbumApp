@@ -12,6 +12,11 @@
 		82F08B851E37D39800A4AF64 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82F08B831E37D39800A4AF64 /* Main.storyboard */; };
 		82F08B871E37D39800A4AF64 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82F08B861E37D39800A4AF64 /* Assets.xcassets */; };
 		82F08B8A1E37D39800A4AF64 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82F08B881E37D39800A4AF64 /* LaunchScreen.storyboard */; };
+		82F08B921E37E2E300A4AF64 /* SearchChoiceScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F08B911E37E2E300A4AF64 /* SearchChoiceScreen.swift */; };
+		82F08B941E37EA0E00A4AF64 /* SearchList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F08B931E37EA0E00A4AF64 /* SearchList.swift */; };
+		82F08B961E37EB0700A4AF64 /* SavedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F08B951E37EB0700A4AF64 /* SavedList.swift */; };
+		82F08B981E37EB2A00A4AF64 /* AlbumInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F08B971E37EB2A00A4AF64 /* AlbumInfo.swift */; };
+		82F08B9E1E38F0A700A4AF64 /* LocalReleaseLib.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 82F08B9C1E38F0A700A4AF64 /* LocalReleaseLib.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +27,11 @@
 		82F08B861E37D39800A4AF64 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		82F08B891E37D39800A4AF64 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		82F08B8B1E37D39800A4AF64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		82F08B911E37E2E300A4AF64 /* SearchChoiceScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchChoiceScreen.swift; sourceTree = "<group>"; };
+		82F08B931E37EA0E00A4AF64 /* SearchList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchList.swift; sourceTree = "<group>"; };
+		82F08B951E37EB0700A4AF64 /* SavedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedList.swift; sourceTree = "<group>"; };
+		82F08B971E37EB2A00A4AF64 /* AlbumInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumInfo.swift; sourceTree = "<group>"; };
+		82F08B9D1E38F0A700A4AF64 /* LocalReleaseLib.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocalReleaseLib.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +64,43 @@
 		82F08B7E1E37D39800A4AF64 /* AlbumsApp */ = {
 			isa = PBXGroup;
 			children = (
-				82F08B7F1E37D39800A4AF64 /* AppDelegate.swift */,
-				82F08B811E37D39800A4AF64 /* ViewController.swift */,
 				82F08B831E37D39800A4AF64 /* Main.storyboard */,
-				82F08B861E37D39800A4AF64 /* Assets.xcassets */,
-				82F08B881E37D39800A4AF64 /* LaunchScreen.storyboard */,
-				82F08B8B1E37D39800A4AF64 /* Info.plist */,
+				82F08B9C1E38F0A700A4AF64 /* LocalReleaseLib.xcdatamodeld */,
+				82F08B991E37F3AA00A4AF64 /* Lists */,
+				82F08B9A1E37F3C600A4AF64 /* Screens */,
+				82F08B9B1E37F3EA00A4AF64 /* Additional */,
 			);
 			path = AlbumsApp;
+			sourceTree = "<group>";
+		};
+		82F08B991E37F3AA00A4AF64 /* Lists */ = {
+			isa = PBXGroup;
+			children = (
+				82F08B931E37EA0E00A4AF64 /* SearchList.swift */,
+				82F08B951E37EB0700A4AF64 /* SavedList.swift */,
+			);
+			name = Lists;
+			sourceTree = "<group>";
+		};
+		82F08B9A1E37F3C600A4AF64 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				82F08B971E37EB2A00A4AF64 /* AlbumInfo.swift */,
+				82F08B811E37D39800A4AF64 /* ViewController.swift */,
+				82F08B911E37E2E300A4AF64 /* SearchChoiceScreen.swift */,
+			);
+			name = Screens;
+			sourceTree = "<group>";
+		};
+		82F08B9B1E37F3EA00A4AF64 /* Additional */ = {
+			isa = PBXGroup;
+			children = (
+				82F08B7F1E37D39800A4AF64 /* AppDelegate.swift */,
+				82F08B881E37D39800A4AF64 /* LaunchScreen.storyboard */,
+				82F08B861E37D39800A4AF64 /* Assets.xcassets */,
+				82F08B8B1E37D39800A4AF64 /* Info.plist */,
+			);
+			name = Additional;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +176,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82F08B961E37EB0700A4AF64 /* SavedList.swift in Sources */,
 				82F08B821E37D39800A4AF64 /* ViewController.swift in Sources */,
+				82F08B941E37EA0E00A4AF64 /* SearchList.swift in Sources */,
+				82F08B9E1E38F0A700A4AF64 /* LocalReleaseLib.xcdatamodeld in Sources */,
+				82F08B981E37EB2A00A4AF64 /* AlbumInfo.swift in Sources */,
 				82F08B801E37D39800A4AF64 /* AppDelegate.swift in Sources */,
+				82F08B921E37E2E300A4AF64 /* SearchChoiceScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +305,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = TGD6Z8TH3U;
 				INFOPLIST_FILE = AlbumsApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -274,6 +319,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = TGD6Z8TH3U;
 				INFOPLIST_FILE = AlbumsApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -302,8 +348,22 @@
 				82F08B901E37D39800A4AF64 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		82F08B9C1E38F0A700A4AF64 /* LocalReleaseLib.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				82F08B9D1E38F0A700A4AF64 /* LocalReleaseLib.xcdatamodel */,
+			);
+			currentVersion = 82F08B9D1E38F0A700A4AF64 /* LocalReleaseLib.xcdatamodel */;
+			path = LocalReleaseLib.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 82F08B741E37D39800A4AF64 /* Project object */;
 }
