@@ -43,11 +43,15 @@ class SearchList: UITableViewController, UISearchBarDelegate {
     }
     
     func loadData(url: URL){
-        do {
-            data = try Data(contentsOf: url)
-        } catch is Error {
-            print("Data is missing, try again")
+        let utilityQueue = DispatchQueue.global(qos: .utility)
+        utilityQueue.async {
+            if let jsonData = try? Data(contentsOf: url) {
+                self.data = jsonData
+                self.exractData(from: self.data)
+                self.tableView.reloadData()
+            }
         }
+        
     }
     
     // Search Button
@@ -61,9 +65,7 @@ class SearchList: UITableViewController, UISearchBarDelegate {
         bandNames = []
         ID = []
         loadData(url: url)
-        if !data.isEmpty {
-        exractData(from: data)
-        }
+        
         // Reset URL
         if searchURL.contains("artist:") {
             searchURL = "http://musicbrainz.org/ws/2/release/?query=artist:"
@@ -72,7 +74,6 @@ class SearchList: UITableViewController, UISearchBarDelegate {
         } else if searchURL.contains("release:") {
             searchURL = "http://musicbrainz.org/ws/2/release/?query=release:"
         }
-        tableView.reloadData()
     }
     
     override func viewDidLoad() {
