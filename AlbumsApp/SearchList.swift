@@ -21,38 +21,9 @@ class SearchList: UITableViewController, UISearchBarDelegate {
     }
     
     // Data
-    var data = Data()
-    var titles: [String] = []
-    var bandNames: [String] = []
-    var ID: [String] = []
+    let jsonLoader = JSONloader()
+    var titles: [String] = []; var bandNames: [String] = []; var ID: [String] = []
     let search = UISearchBar()
-    
-    // JSON Data Extraction
-    func exractData(from: Data){
-        let json = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:Any]
-        let release = json["releases"] as! [Any]
-        for info in release {
-            let album = info as! [String:Any]
-            ID.append(album["id"] as! String)
-            titles.append(album["title"] as! String)
-            let artistCredit = album["artist-credit"] as! [Any]
-            let artistInfo = artistCredit[0] as! [String:Any]
-            let artist = artistInfo["artist"] as! [String:Any]
-            bandNames.append(artist["name"] as! String)
-        }
-    }
-    
-    func loadData(url: URL){
-        let utilityQueue = DispatchQueue.global(qos: .utility)
-        utilityQueue.async {
-            if let jsonData = try? Data(contentsOf: url) {
-                self.data = jsonData
-                self.exractData(from: self.data)
-                self.tableView.reloadData()
-            }
-        }
-        
-    }
     
     // Search Button
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -61,11 +32,9 @@ class SearchList: UITableViewController, UISearchBarDelegate {
         searchURL += query
         searchURL += "&fmt=json"
         let url = URL(string: searchURL)!
-        titles = []
-        bandNames = []
-        ID = []
-        loadData(url: url)
-        
+        (ID, bandNames, titles) = ([],[],[])
+        (ID, bandNames, titles) = jsonLoader.loadDataFromJSON(url: url)
+        tableView.reloadData()
         // Reset URL
         if searchURL.contains("artist:") {
             searchURL = "http://musicbrainz.org/ws/2/release/?query=artist:"
