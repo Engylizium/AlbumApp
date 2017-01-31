@@ -12,6 +12,7 @@ import CoreData
 class SavedList: UITableViewController {
     
     // Data
+    let dataManager = DataManager()
     var titles: [String] = []
     var bandNames: [String] = []
     var ID: [String] = []
@@ -19,31 +20,12 @@ class SavedList: UITableViewController {
     @IBAction func backButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
-    
-    func getContext () -> NSManagedObjectContext {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        return appDelegate.persistentContainer.viewContext
-    }
-    
-    func loadInfo(){
-        let fetchRequest: NSFetchRequest<ReleaseInfo> = ReleaseInfo.fetchRequest()
-        do {
-            let searchResults = try getContext().fetch(fetchRequest)
-            for info in searchResults as [NSManagedObject] {
-                titles.append(info.value(forKey: "releaseTitle") as! String)
-                bandNames.append(info.value(forKey: "artist") as! String)
-                ID.append(info.value(forKey: "releaseID") as! String)
-            }
-        } catch {
-            print("Error with request: \(error)")
-        }
-        tableView.reloadData()
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.contentInset.top = 20
-        loadInfo()
+        (ID, bandNames, titles) = dataManager.load()
+        tableView.reloadData()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {

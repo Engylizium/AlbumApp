@@ -33,32 +33,10 @@ class AlbumInfo: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     @IBAction func saveButton(_ sender: UIBarButtonItem) {
-        saveInfo(artist: artistLabel.text!, releaseID: ID.text!, releaseTitle: releaseLabel.text!)
+        dataManager.save(ID: ID.text!, artist: artistLabel.text!, release: releaseLabel.text!)
     }
     
-    // Save Data
-    func saveInfo(artist: String, releaseID: String, releaseTitle: String) {
-        let context = getContext()
-        let entity =  NSEntityDescription.entity(forEntityName: "ReleaseInfo", in: context)
-        let lib = NSManagedObject(entity: entity!, insertInto: context)
-        lib.setValue(artist, forKey: "artist")
-        lib.setValue(releaseID, forKey: "releaseID")
-        lib.setValue(releaseTitle, forKey: "releaseTitle")
-        
-        //save the object
-        do {
-            try context.save()
-            print("saved!")
-        } catch let error as NSError  {
-            print("Could not save \(error), \(error.userInfo)")
-        } catch { }
-    }
-    
-    func getContext () -> NSManagedObjectContext {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        return appDelegate.persistentContainer.viewContext
-    }
-    
+    let dataManager = DataManager()
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var ID: UILabel!
     @IBOutlet weak var artistLabel: UILabel!
