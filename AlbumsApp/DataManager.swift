@@ -12,18 +12,26 @@ import CoreData
 
 class DataManager {
     
-    func context() -> NSManagedObjectContext{
+    func context() -> NSManagedObjectContext {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.persistentContainer.viewContext
     }
     
+    func container() -> NSPersistentContainer {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        return appDelegate.persistentContainer
+    }
+    
     func save(ID: String, artist: String, release: String){
-        let entity = NSEntityDescription.entity(forEntityName: "ReleaseInfo", in: context())
-        let mo = NSManagedObject(entity: entity!, insertInto: context())
-        mo.setValue(ID, forKey: "releaseID")
-        mo.setValue(artist, forKey: "artist")
-        mo.setValue(release, forKey: "releaseTitle")
-        do { try context().save(); print("saved!") } catch let error as NSError  { print("Could not save \(error), \(error.userInfo)") }
+        container().performBackgroundTask({_ in
+            let entity = NSEntityDescription.entity(forEntityName: "ReleaseInfo", in: self.context())
+            let mo = NSManagedObject(entity: entity!, insertInto: self.context())
+            mo.setValue(ID, forKey: "releaseID")
+            mo.setValue(artist, forKey: "artist")
+            mo.setValue(release, forKey: "releaseTitle")
+            do { try self.context().save(); print("saved!") } catch let error as NSError  { print("Could not save \(error), \(error.userInfo)") }
+        })
+        
     }
     
     func load() -> ([String],[String],[String]){
